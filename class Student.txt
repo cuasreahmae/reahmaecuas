@@ -1,0 +1,61 @@
+class Student:
+    def __init__(self, name, status, income, expenses):
+        self.name = name
+        self.status = status
+        self.income = income
+        self.expenses = expenses
+
+class FinancialManagementSystem:
+    def __init__(self, initial_money):
+        self.students = []
+        self.money = initial_money
+
+    def add_student(self, name, status, income, expenses):
+        student = Student(name, status, income, expenses)
+        self.students.append(student)
+        print(f"Student {name} added successfully!")
+
+    def display_students(self):
+        print("\nStudent Information:")
+        for student in self.students:
+            print(f"Name: {student.name}, Status: {student.status}, Income: {student.income}, Expenses: {student.expenses}")
+
+    def display_money(self):
+        print(f"\nTotal Money Available: {self.money}")
+
+def main_menu():
+    initial_money = float(input("Enter the initial amount of money: "))
+    financial_system = FinancialManagementSystem(initial_money)
+
+    while True:
+        print("\nMain Menu:")
+        print("1. Add Student")
+        print("2. Display Students")
+        print("3. Display Money")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1/2/3/4): ")
+
+        if choice == '1':
+            name = input("Enter student's name: ")
+            status = input("Enter student's status: ")
+            income = float(input("Enter student's income: "))
+            expenses = float(input("Enter student's expenses: "))
+            financial_system.add_student(name, status, income, expenses)
+
+        elif choice == '2':
+            financial_system.display_students()
+
+        elif choice == '3':
+            financial_system.display_money()
+
+        elif choice == '4':
+            print("Exiting the program. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+if __name__ == "__main__":
+    print("Welcome to the School Financial Management System!")
+    main_menu()
